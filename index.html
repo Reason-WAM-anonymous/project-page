@@ -230,6 +230,25 @@
       margin-bottom: 28px;
     }
 
+    #abstract .section-head,
+    #method .section-head,
+    #results .section-head,
+    #cases .section-head {
+      max-width: 100%;
+      margin-right: auto;
+      margin-left: auto;
+      text-align: center;
+    }
+
+    #abstract .section-head .lead,
+    #method .section-head .lead,
+    #results .section-head .lead,
+    #cases .section-head .lead {
+      max-width: 100%;
+      margin-right: auto;
+      margin-left: auto;
+    }
+
     .eyebrow {
       margin: 0 0 8px;
       color: var(--teal);
@@ -314,6 +333,7 @@
     }
 
     .figure-block {
+      margin: 0;
       overflow: hidden;
       border: 1px solid var(--line);
       border-radius: 8px;
@@ -323,6 +343,10 @@
 
     .figure-block img {
       width: 100%;
+    }
+
+    .ablation-figure {
+      margin-top: 22px;
     }
 
     .method-flow {
@@ -703,16 +727,12 @@
           The VLM dynamically chooses active perception, direct primitive action, and WAM-based execution according to local uncertainty and route-level intent.
         </p>
       </div>
-      <div class="grid two" style="margin-top: 22px;">
-        <figure class="figure-block">
-          <img src="static/figures/case.png" alt="Additional Reason-WAM navigation examples">
-          <figcaption class="caption">Additional navigation examples across diverse urban targets.</figcaption>
-        </figure>
-        <figure class="figure-block">
-          <img src="static/figures/case1.png" alt="More Reason-WAM navigation examples">
-          <figcaption class="caption">Goal-oriented rollouts requiring cross-view spatial consistency and continuous control.</figcaption>
-        </figure>
-      </div>
+      <figure class="figure-block ablation-figure">
+        <img src="static/figures/case.png" alt="Ablation study comparing Reason-WAM, VLM-only, and WM-VO-only navigation">
+        <figcaption class="caption">
+          Ablation comparison from the paper: Reason-WAM reaches the destination by combining high-level spatial reasoning with grounded action execution, while the VLM-only and WM-VO-only baselines fail from the same initial state and goal.
+        </figcaption>
+      </figure>
     </section>
 
   </main>
