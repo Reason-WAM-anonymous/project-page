@@ -189,16 +189,20 @@
 
     .hero-figure {
       margin: 32px auto 0;
-      overflow: hidden;
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      background: #fff;
-      box-shadow: var(--shadow);
+      overflow: visible;
+      border: 0;
+      border-radius: 0;
+      background: transparent;
+      box-shadow: none;
     }
 
     .hero-figure img {
       width: 100%;
-      background: #fff;
+      background: transparent;
+    }
+
+    .hero-figure .caption {
+      display: none;
     }
 
     .caption {
@@ -512,7 +516,6 @@
         <a href="#method">Method</a>
         <a href="#results">Results</a>
         <a href="#cases">Cases</a>
-        <a href="#citation">Citation</a>
       </div>
     </nav>
   </header>
@@ -520,20 +523,14 @@
   <main id="top">
     <div class="hero">
       <div class="hero-inner">
-        <div class="venue">Anonymous ACL Submission</div>
+        <div class="venue">Anonymous ARR Submission</div>
         <h1>Reason-WAM: Vision-Language Reasoning for World Action Models in Urban Aerial Goal Navigation</h1>
         <p class="subtitle">
           A hierarchical navigation framework that couples VLM-based goal reasoning with world-action-model grounding for sparse-language, continuous 3D urban aerial navigation.
         </p>
         <p class="authors">Anonymous authors</p>
-        <div class="buttons" aria-label="Project links">
-          <a class="button" href="static/reason-wam-paper.pdf">Paper PDF</a>
-          <a class="button secondary" href="#results">Results</a>
-          <a class="button secondary" href="#citation">BibTeX</a>
-          <a class="button secondary" href="#" aria-disabled="true">Code Coming Soon</a>
-        </div>
         <figure class="hero-figure">
-          <img src="static/figures/intro.png" alt="Overview of Reason-WAM for urban aerial goal navigation">
+          <img src="static/figures/intro-transparent.png" alt="Overview of Reason-WAM for urban aerial goal navigation">
           <figcaption class="caption">
             Goal-oriented urban aerial navigation requires an agent to infer useful subgoals from sparse language and ground them into executable motion in continuous three-dimensional space.
           </figcaption>
@@ -544,24 +541,13 @@
     <section id="abstract">
       <div class="section-head">
         <p class="eyebrow">Abstract</p>
-        <h2>Reasoning over goals, grounding through visual futures.</h2>
+        <h2>Abstract</h2>
         <p class="lead">
-          Goal navigation demands both high-level spatial reasoning for interpreting sparse natural-language targets and low-level action grounding for executable control. Reason-WAM addresses this by letting a VLM plan, sense, and decide when to invoke a WAM; the WAM predicts short-horizon visual futures, and an action decoder turns those visual transitions into aerial motion.
+          Goal navigation is a fundamental problem in embodied intelligence, requiring an agent to reach a target specified by a sparse natural-language goal. The task inherently demands both high-level spatial reasoning for goal interpretation and route planning, and low-level action grounding for executable control. World Action Models (WAMs) provide a promising action-grounding paradigm by predicting future visual states and recovering actions through inverse dynamics, but they are typically limited to simple and short-horizon tasks.
         </p>
-      </div>
-      <div class="grid three">
-        <article class="card">
-          <h3>Sparse Goal Understanding</h3>
-          <p>The agent receives only an open-ended goal such as a target region or visual attribute, not a step-by-step route.</p>
-        </article>
-        <article class="card">
-          <h3>Selective WAM Execution</h3>
-          <p>The VLM chooses among active perception, primitive controls, and route-level instructions delegated to the WAM.</p>
-        </article>
-        <article class="card">
-          <h3>Bottom-Up Training</h3>
-          <p>Training proceeds from visual transition action decoding, to instruction-conditioned world modeling, to multi-turn GRPO planning.</p>
-        </article>
+        <p class="lead">
+          We propose <strong>Reason-WAM</strong>, a hierarchical navigation framework in which a VLM performs goal reasoning and route planning, then drives the WAM to transform route-level intents into executable actions. A bottom-up training framework first grounds visual transitions into actions, then learns instruction-conditioned visual dynamics, and finally optimizes the VLM planner with multi-turn GRPO for closed-loop decision-making. Experiments on a public urban aerial goal-navigation benchmark show that Reason-WAM achieves state-of-the-art performance by combining the high-level reasoning strength of VLMs with the spatial action grounding capability of WAMs.
+        </p>
       </div>
     </section>
 
@@ -729,21 +715,6 @@
       </div>
     </section>
 
-    <section id="citation">
-      <div class="section-head">
-        <p class="eyebrow">Citation</p>
-        <h2>BibTeX</h2>
-        <p class="lead">
-          The citation will be updated after review. During anonymous review, author-identifying information is intentionally omitted.
-        </p>
-      </div>
-      <pre><code>@misc{reasonwam2026,
-  title  = {Reason-WAM: Vision-Language Reasoning for World Action Models in Urban Aerial Goal Navigation},
-  author = {Anonymous},
-  year   = {2026},
-  note   = {Anonymous ACL submission}
-}</code></pre>
-    </section>
   </main>
 
   <footer class="footer">
