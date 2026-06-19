@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1760" height="990" viewBox="0 0 1760 990">
+<defs>
+  <style>
+    .title{font-family:Arial,Helvetica,sans-serif;font-size:28px;font-weight:700;fill:#1f2933}
+    .panel-title{font-family:Georgia,'Times New Roman',serif;font-size:24px;fill:#111827}
+    .label{font-family:Arial,Helvetica,sans-serif;font-size:18px;fill:#111827}
+    .small{font-family:Arial,Helvetica,sans-serif;font-size:15px;fill:#667085}
+    .tiny{font-family:Arial,Helvetica,sans-serif;font-size:13px;fill:#667085}
+    .module{font-family:Arial,Helvetica,sans-serif;font-size:24px;font-weight:600;fill:#111827}
+    .module-small{font-family:Arial,Helvetica,sans-serif;font-size:18px;font-weight:600;fill:#111827}
+    .good{font-family:Arial,Helvetica,sans-serif;font-size:17px;font-weight:700;fill:#00a651}
+    .bad{font-family:Arial,Helvetica,sans-serif;font-size:16px;font-weight:700;fill:#7b7f84}
+    .caption{font-family:Arial,Helvetica,sans-serif;font-size:15px;fill:#667085}
+  </style>
+  <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto" markerUnits="strokeWidth">
+    <path d="M 0 0 L 10 5 L 0 10 z" fill="#111827"/>
+  </marker>
+  <marker id="arrow-blue" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto" markerUnits="strokeWidth">
+    <path d="M 0 0 L 10 5 L 0 10 z" fill="#4c9ed9"/>
+  </marker>
+  <filter id="softShadow" x="-20%" y="-20%" width="140%" height="140%">
+    <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#111827" flood-opacity="0.10"/>
+  </filter>
+</defs><rect x="0" y="0" width="1760" height="990" rx="0" fill="#ffffff" stroke="none" stroke-width="0" /><text x="880" y="50" text-anchor="middle" class="title">Reason-WAM: Reasoning Where to Go, Grounding How to Move</text><text x="880" y="82" text-anchor="middle" class="caption">Urban aerial goal navigation requires both open-ended spatial reasoning and continuous 3D action grounding.</text><rect x="55" y="115" width="495" height="765" rx="0" fill="#ffffff" stroke="#9aa0a6" stroke-width="4" stroke-dasharray="18 18"/><text x="302.5" y="930" text-anchor="middle" class="panel-title">(a) VLA Policy</text><rect x="585" y="115" width="495" height="765" rx="0" fill="#ffffff" stroke="#9aa0a6" stroke-width="4" stroke-dasharray="18 18"/><text x="832.5" y="930" text-anchor="middle" class="panel-title">(b) WAM Executor</text><rect x="1115" y="115" width="590" height="765" rx="0" fill="#ffffff" stroke="#9aa0a6" stroke-width="4" stroke-dasharray="18 18"/><text x="1410" y="930" text-anchor="middle" class="panel-title">(c) Reason-WAM</text><g>
+    <g transform="translate(169 140) scale(0.8)">
+    <circle cx="16" cy="16" r="13" fill="#fff" stroke="#d9a441" stroke-width="3"/>
+    <circle cx="16" cy="16" r="7" fill="none" stroke="#d9a441" stroke-width="3"/>
+    <circle cx="16" cy="16" r="2.8" fill="#d9a441"/>
+  </g><text x="185" y="188" text-anchor="middle" class="small">Goal</text>
+    <g transform="translate(287 140) scale(0.8)">
+    <rect x="2" y="7" width="28" height="20" rx="4" fill="#fff" stroke="#4c9ed9" stroke-width="3"/>
+    <path d="M9 7l3-5h8l3 5" fill="none" stroke="#4c9ed9" stroke-width="3" stroke-linejoin="round"/>
+    <circle cx="16" cy="17" r="5" fill="none" stroke="#4c9ed9" stroke-width="3"/>
+  </g><text x="303" y="182" text-anchor="middle" class="small"><tspan x="303" dy="0">Current</tspan><tspan x="303" dy="16">Observation</tspan></text>
+    <g transform="translate(405 140) scale(0.8)">
+    <path d="M6 10a12 12 0 1 1 1 14" fill="none" stroke="#8d6fd1" stroke-width="3" stroke-linecap="round"/>
+    <path d="M6 10H2V6" fill="none" stroke="#8d6fd1" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M16 8v9l7 4" fill="none" stroke="#8d6fd1" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  </g><text x="421" y="188" text-anchor="middle" class="small">History</text>
+    <path d="M 185 198 V 222 H 421 V 198" fill="none" stroke="#111827" stroke-width="2"/>
+    <line x1="303" y1="198" x2="303" y2="244" stroke="#111827" stroke-width="2" marker-end="url(#arrow)"  class=""/>
+  </g><rect x="165" y="345" width="275" height="140" rx="18" fill="#ffdce5" stroke="none" stroke-width="0" filter="url(#softShadow)"/><g transform="translate(205 397) scale(1.15)"><rect x="0" y="0" width="9" height="9" rx="2" fill="#ffdce5" stroke="#667085" stroke-width="1"/><rect x="13" y="0" width="9" height="9" rx="2" fill="#dff0ff" stroke="#667085" stroke-width="1"/><rect x="26" y="0" width="9" height="9" rx="2" fill="#fff2cc" stroke="#667085" stroke-width="1"/><rect x="0" y="13" width="9" height="9" rx="2" fill="#e8f6df" stroke="#667085" stroke-width="1"/><rect x="13" y="13" width="9" height="9" rx="2" fill="#e7ddff" stroke="#667085" stroke-width="1"/><rect x="26" y="13" width="9" height="9" rx="2" fill="#ffdce5" stroke="#667085" stroke-width="1"/></g><text x="325" y="418" text-anchor="middle" class="module">VLA Policy</text><text x="325" y="452" text-anchor="middle" class="tiny">vision-language tokens → action tokens</text><line x1="303" y1="485" x2="303" y2="545" stroke="#111827" stroke-width="2" marker-end="url(#arrow)"  class=""/><g transform="translate(275 560) scale(1.1)">
+    <circle cx="16" cy="16" r="5" fill="#fff" stroke="#1f2933" stroke-width="3"/>
+    <path d="M16 11V3M16 21v8M11 16H3M21 16h8" stroke="#1f2933" stroke-width="3" stroke-linecap="round"/>
+    <circle cx="3" cy="16" r="3" fill="#dff0ff" stroke="#4c9ed9" stroke-width="2"/>
+    <circle cx="29" cy="16" r="3" fill="#dff0ff" stroke="#4c9ed9" stroke-width="2"/>
+    <circle cx="16" cy="3" r="3" fill="#dff0ff" stroke="#4c9ed9" stroke-width="2"/>
+    <circle cx="16" cy="29" r="3" fill="#dff0ff" stroke="#4c9ed9" stroke-width="2"/>
+  </g><text x="325" y="610" text-anchor="middle" class="label">Actions</text><g><rect x="70" y="675" width="430" height="62" rx="8" fill="#e8f6df" stroke="none" stroke-width="0" /><text x="88" y="705" text-anchor="start" class="good">Strong semantic reasoning</text><g transform="translate(454 683)">
+    <rect x="0" y="0" width="34" height="34" rx="7.48" fill="#effaf0" stroke="#00a651" stroke-width="2.72"/>
+    <path d="M 7.48 18.02 L 14.28 24.48 L 27.200000000000003 9.520000000000001" fill="none" stroke="#00a651" stroke-width="4.08" stroke-linecap="round" stroke-linejoin="round"/>
+  </g></g><g><rect x="70" y="755" width="430" height="62" rx="8" fill="#ffe0e6" stroke="none" stroke-width="0" /><text x="88" y="779" text-anchor="start" class="bad"><tspan x="88" dy="0">Weak continuous</tspan><tspan x="88" dy="18">3D action grounding</tspan></text><g transform="translate(454 763)">
+    <rect x="0" y="0" width="34" height="34" rx="7.48" fill="#fff4f4" stroke="#f00000" stroke-width="2.72"/>
+    <path d="M 9.520000000000001 9.520000000000001 L 24.48 24.48 M 24.48 9.520000000000001 L 9.520000000000001 24.48" fill="none" stroke="#f00000" stroke-width="4.08" stroke-linecap="round"/>
+  </g></g><text x="303" y="650" text-anchor="middle" class="caption">semantic bottleneck</text><path d="M 242 635 C 265 625, 287 625, 310 635 C 333 645, 356 645, 380 635" fill="none" stroke="#d0a246" stroke-width="2"  stroke-dasharray="7 6"/><g>
+    <g transform="translate(705 155) scale(1)">
+    <path d="M5 25 C10 7, 22 27, 29 8" fill="none" stroke="#d9a441" stroke-width="3" stroke-linecap="round"/>
+    <circle cx="5" cy="25" r="3" fill="#d9a441"/>
+    <circle cx="29" cy="8" r="3" fill="#d9a441"/>
+  </g>
+    <text x="730" y="202" text-anchor="middle" class="small">Local</text>
+    <text x="730" y="220" text-anchor="middle" class="small">Instruction</text>
+    <g transform="translate(913 155) scale(0.95)">
+    <rect x="2" y="7" width="28" height="20" rx="4" fill="#fff" stroke="#4c9ed9" stroke-width="3"/>
+    <path d="M9 7l3-5h8l3 5" fill="none" stroke="#4c9ed9" stroke-width="3" stroke-linejoin="round"/>
+    <circle cx="16" cy="17" r="5" fill="none" stroke="#4c9ed9" stroke-width="3"/>
+  </g>
+    <text x="935" y="197" text-anchor="middle" class="small"><tspan x="935" dy="0">Current</tspan><tspan x="935" dy="16">Observation</tspan></text>
+    <line x1="730" y1="232" x2="730" y2="286" stroke="#111827" stroke-width="2" marker-end="url(#arrow)"  class=""/>
+    <line x1="935" y1="232" x2="935" y2="286" stroke="#111827" stroke-width="2" marker-end="url(#arrow)"  class=""/>
+  </g><rect x="690" y="285" width="285" height="112" rx="16" fill="#dff0ff" stroke="none" stroke-width="0" filter="url(#softShadow)"/><text x="832" y="353" text-anchor="middle" class="module">World Model</text><line x1="832" y1="397" x2="832" y2="457" stroke="#111827" stroke-width="2" marker-end="url(#arrow)"  class=""/><g transform="translate(742 457) scale(1.7)">
+    <rect x="2" y="10" width="18" height="14" rx="2" fill="#eaf6ff" stroke="#4c9ed9" stroke-width="2"/>
+    <rect x="12" y="6" width="18" height="14" rx="2" fill="#dff0ff" stroke="#4c9ed9" stroke-width="2"/>
+    <rect x="22" y="2" width="18" height="14" rx="2" fill="#cfe9ff" stroke="#4c9ed9" stroke-width="2"/>
+    <path d="M7 21l4-5 3 3 3-4" fill="none" stroke="#00a651" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M27 13l4-5 3 3 3-4" fill="none" stroke="#00a651" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  </g><text x="832" y="500" text-anchor="middle" class="label"><tspan x="832" dy="0">Predicted Future</tspan><tspan x="832" dy="22">Visual Rollout</tspan></text><line x1="832" y1="542" x2="832" y2="590" stroke="#111827" stroke-width="2" marker-end="url(#arrow)"  class=""/><rect x="715" y="590" width="235" height="95" rx="14" fill="#dff0ff" stroke="none" stroke-width="0" filter="url(#softShadow)"/><text x="832" y="648" text-anchor="middle" class="module-small">Visual Odometry</text><line x1="832" y1="685" x2="832" y2="735" stroke="#111827" stroke-width="2" marker-end="url(#arrow)"  class=""/><g transform="translate(802 746) scale(1.1)">
+    <circle cx="16" cy="16" r="5" fill="#fff" stroke="#1f2933" stroke-width="3"/>
+    <path d="M16 11V3M16 21v8M11 16H3M21 16h8" stroke="#1f2933" stroke-width="3" stroke-linecap="round"/>
+    <circle cx="3" cy="16" r="3" fill="#dff0ff" stroke="#4c9ed9" stroke-width="2"/>
+    <circle cx="29" cy="16" r="3" fill="#dff0ff" stroke="#4c9ed9" stroke-width="2"/>
+    <circle cx="16" cy="3" r="3" fill="#dff0ff" stroke="#4c9ed9" stroke-width="2"/>
+    <circle cx="16" cy="29" r="3" fill="#dff0ff" stroke="#4c9ed9" stroke-width="2"/>
+  </g><text x="852" y="794" text-anchor="middle" class="label">Actions</text><g><rect x="605" y="675" width="430" height="62" rx="8" fill="#e8f6df" stroke="none" stroke-width="0" /><text x="623" y="705" text-anchor="start" class="good">Strong local action grounding</text><g transform="translate(989 683)">
+    <rect x="0" y="0" width="34" height="34" rx="7.48" fill="#effaf0" stroke="#00a651" stroke-width="2.72"/>
+    <path d="M 7.48 18.02 L 14.28 24.48 L 27.200000000000003 9.520000000000001" fill="none" stroke="#00a651" stroke-width="4.08" stroke-linecap="round" stroke-linejoin="round"/>
+  </g></g><g><rect x="605" y="755" width="430" height="62" rx="8" fill="#ffe0e6" stroke="none" stroke-width="0" /><text x="623" y="779" text-anchor="start" class="bad"><tspan x="623" dy="0">Lacks high-level</tspan><tspan x="623" dy="18">goal reasoning</tspan></text><g transform="translate(989 763)">
+    <rect x="0" y="0" width="34" height="34" rx="7.48" fill="#fff4f4" stroke="#f00000" stroke-width="2.72"/>
+    <path d="M 9.520000000000001 9.520000000000001 L 24.48 24.48 M 24.48 9.520000000000001 L 9.520000000000001 24.48" fill="none" stroke="#f00000" stroke-width="4.08" stroke-linecap="round"/>
+  </g></g><g>
+    <g transform="translate(1236 130) scale(0.8)">
+    <circle cx="16" cy="16" r="13" fill="#fff" stroke="#d9a441" stroke-width="3"/>
+    <circle cx="16" cy="16" r="7" fill="none" stroke="#d9a441" stroke-width="3"/>
+    <circle cx="16" cy="16" r="2.8" fill="#d9a441"/>
+  </g><text x="1252" y="178" text-anchor="middle" class="small">Goal</text>
+    <g transform="translate(1394 130) scale(0.8)">
+    <rect x="2" y="7" width="28" height="20" rx="4" fill="#fff" stroke="#4c9ed9" stroke-width="3"/>
+    <path d="M9 7l3-5h8l3 5" fill="none" stroke="#4c9ed9" stroke-width="3" stroke-linejoin="round"/>
+    <circle cx="16" cy="17" r="5" fill="none" stroke="#4c9ed9" stroke-width="3"/>
+  </g><text x="1410" y="172" text-anchor="middle" class="small"><tspan x="1410" dy="0">Current</tspan><tspan x="1410" dy="16">Observation</tspan></text>
+    <g transform="translate(1552 130) scale(0.8)">
+    <path d="M6 10a12 12 0 1 1 1 14" fill="none" stroke="#8d6fd1" stroke-width="3" stroke-linecap="round"/>
+    <path d="M6 10H2V6" fill="none" stroke="#8d6fd1" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M16 8v9l7 4" fill="none" stroke="#8d6fd1" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  </g><text x="1568" y="178" text-anchor="middle" class="small">History</text>
+    <path d="M 1252 188 V 212 H 1568 V 188" fill="none" stroke="#111827" stroke-width="2"/>
+    <line x1="1410" y1="188" x2="1410" y2="234" stroke="#111827" stroke-width="2" marker-end="url(#arrow)"  class=""/>
+  </g><rect x="1240" y="318" width="340" height="95" rx="14" fill="#ffdce5" stroke="none" stroke-width="0" filter="url(#softShadow)"/><text x="1410" y="376" text-anchor="middle" class="module-small">VLM Spatial Reasoner</text><line x1="1410" y1="413" x2="1410" y2="462" stroke="#111827" stroke-width="2" marker-end="url(#arrow)"  class=""/><rect x="1190" y="462" width="440" height="92" rx="12" fill="#fff7ed" stroke="#f4b35d" stroke-width="2" /><text x="1410" y="490" text-anchor="middle" class="module-small">Step Selection</text><rect x="1173" y="510" width="124" height="34" rx="8" fill="#e8f6df" stroke="none" stroke-width="0" /><text x="1235" y="533" text-anchor="middle" class="small">Sense</text><rect x="1348" y="510" width="124" height="34" rx="8" fill="#e7ddff" stroke="none" stroke-width="0" /><text x="1410" y="533" text-anchor="middle" class="small">Ctrl</text><rect x="1523" y="510" width="124" height="34" rx="8" fill="#fff2cc" stroke="none" stroke-width="0" /><text x="1585" y="533" text-anchor="middle" class="small">Route</text><path d="M 1235 544 V 620 H 1355" fill="none" stroke="#111827" stroke-width="2" marker-end="url(#arrow)" /><path d="M 1410 544 V 620" fill="none" stroke="#111827" stroke-width="2" marker-end="url(#arrow)" /><path d="M 1585 544 V 588 H 1515 V 620" fill="none" stroke="#4c9ed9" stroke-width="2.5"  marker-end="url(#arrow-blue)"/><rect x="1450" y="592" width="130" height="72" rx="12" fill="#dff0ff" stroke="none" stroke-width="0" filter="url(#softShadow)"/><text x="1515" y="636" text-anchor="middle" class="module-small">WAM</text><line x1="1515" y1="664" x2="1515" y2="708" stroke="#4c9ed9" stroke-width="2.5"  marker-end="url(#arrow-blue)" class=""/><g transform="translate(1464 704) scale(1.25)">
+    <rect x="2" y="10" width="18" height="14" rx="2" fill="#eaf6ff" stroke="#4c9ed9" stroke-width="2"/>
+    <rect x="12" y="6" width="18" height="14" rx="2" fill="#dff0ff" stroke="#4c9ed9" stroke-width="2"/>
+    <rect x="22" y="2" width="18" height="14" rx="2" fill="#cfe9ff" stroke="#4c9ed9" stroke-width="2"/>
+    <path d="M7 21l4-5 3 3 3-4" fill="none" stroke="#00a651" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M27 13l4-5 3 3 3-4" fill="none" stroke="#00a651" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  </g><text x="1534" y="732" text-anchor="middle" class="small">Future</text><line x1="1515" y1="746" x2="1515" y2="790" stroke="#4c9ed9" stroke-width="2.5"  marker-end="url(#arrow-blue)" class=""/><rect x="1420" y="790" width="190" height="58" rx="10" fill="#dff0ff" stroke="none" stroke-width="0" /><text x="1515" y="826" text-anchor="middle" class="module-small">VO Decoder</text><path d="M 1410 620 V 858 H 1515 V 848" fill="none" stroke="#111827" stroke-width="2" marker-end="url(#arrow)" /><text x="1350" y="645" text-anchor="middle" class="tiny">direct</text><line x1="1515" y1="848" x2="1515" y2="892" stroke="#111827" stroke-width="2" marker-end="url(#arrow)"  class=""/><g transform="translate(1485 902) scale(1.05)">
+    <circle cx="16" cy="16" r="5" fill="#fff" stroke="#1f2933" stroke-width="3"/>
+    <path d="M16 11V3M16 21v8M11 16H3M21 16h8" stroke="#1f2933" stroke-width="3" stroke-linecap="round"/>
+    <circle cx="3" cy="16" r="3" fill="#dff0ff" stroke="#4c9ed9" stroke-width="2"/>
+    <circle cx="29" cy="16" r="3" fill="#dff0ff" stroke="#4c9ed9" stroke-width="2"/>
+    <circle cx="16" cy="3" r="3" fill="#dff0ff" stroke="#4c9ed9" stroke-width="2"/>
+    <circle cx="16" cy="29" r="3" fill="#dff0ff" stroke="#4c9ed9" stroke-width="2"/>
+  </g><text x="1540" y="943" text-anchor="middle" class="label">Actions</text><path d="M 1604 918 C 1690 860, 1680 300, 1580 285 C 1510 275, 1450 288, 1410 318" fill="none" stroke="#00a651" stroke-width="2.5" marker-end="url(#arrow)" stroke-dasharray="8 7"/><text x="1625" y="535" text-anchor="start" class="tiny">closed loop</text><g><rect x="1132" y="650" width="305" height="62" rx="8" fill="#e8f6df" stroke="none" stroke-width="0" /><text x="1150" y="680" text-anchor="start" class="good">Spatial reasoning</text><g transform="translate(1391 658)">
+    <rect x="0" y="0" width="34" height="34" rx="7.48" fill="#effaf0" stroke="#00a651" stroke-width="2.72"/>
+    <path d="M 7.48 18.02 L 14.28 24.48 L 27.200000000000003 9.520000000000001" fill="none" stroke="#00a651" stroke-width="4.08" stroke-linecap="round" stroke-linejoin="round"/>
+  </g></g><g><rect x="1132" y="735" width="305" height="72" rx="8" fill="#e8f6df" stroke="none" stroke-width="0" /><text x="1150" y="759" text-anchor="start" class="good"><tspan x="1150" dy="0">Grounded route</tspan><tspan x="1150" dy="18">execution</tspan></text><g transform="translate(1391 743)">
+    <rect x="0" y="0" width="34" height="34" rx="7.48" fill="#effaf0" stroke="#00a651" stroke-width="2.72"/>
+    <path d="M 7.48 18.02 L 14.28 24.48 L 27.200000000000003 9.520000000000001" fill="none" stroke="#00a651" stroke-width="4.08" stroke-linecap="round" stroke-linejoin="round"/>
+  </g></g><g><rect x="1132" y="830" width="305" height="62" rx="8" fill="#e8f6df" stroke="none" stroke-width="0" /><text x="1150" y="860" text-anchor="start" class="good">Selective WAM use</text><g transform="translate(1391 838)">
+    <rect x="0" y="0" width="34" height="34" rx="7.48" fill="#effaf0" stroke="#00a651" stroke-width="2.72"/>
+    <path d="M 7.48 18.02 L 14.28 24.48 L 27.200000000000003 9.520000000000001" fill="none" stroke="#00a651" stroke-width="4.08" stroke-linecap="round" stroke-linejoin="round"/>
+  </g></g></svg>

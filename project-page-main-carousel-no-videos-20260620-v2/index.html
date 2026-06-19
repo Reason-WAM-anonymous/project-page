@@ -1,0 +1,1041 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Reason-WAM: Vision-Language Reasoning for World Action Models in Urban Aerial Goal Navigation">
+  <title>Reason-WAM</title>
+  <style>
+    :root {
+      --ink: #18202a;
+      --muted: #5d6875;
+      --line: #d8e0e7;
+      --paper: #ffffff;
+      --soft: #f4f8fb;
+      --blue: #1f6feb;
+      --teal: #098d86;
+      --amber: #b7791f;
+      --rose: #b83256;
+      --shadow: 0 18px 50px rgba(31, 48, 71, 0.12);
+      --radius: 8px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--ink);
+      background: linear-gradient(180deg, #fbfdff 0%, #fff 420px);
+      line-height: 1.65;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    video {
+      display: block;
+      width: 100%;
+      background: #0f1722;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      border-bottom: 1px solid rgba(216, 224, 231, 0.86);
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(18px);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: min(1180px, calc(100% - 40px));
+      margin: 0 auto;
+      min-height: 64px;
+      gap: 24px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 800;
+      letter-spacing: 0;
+      white-space: nowrap;
+    }
+
+    .brand-mark {
+      width: 28px;
+      height: 28px;
+      border: 2px solid var(--ink);
+      border-radius: 6px;
+      position: relative;
+    }
+
+    .brand-mark::after {
+      content: "";
+      position: absolute;
+      left: 6px;
+      top: 6px;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--teal);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 650;
+    }
+
+    .nav-links a:hover {
+      color: var(--ink);
+    }
+
+    .hero {
+      border-bottom: 1px solid var(--line);
+      background:
+        linear-gradient(115deg, rgba(31, 111, 235, 0.1), transparent 34%),
+        linear-gradient(245deg, rgba(9, 141, 134, 0.1), transparent 36%),
+        linear-gradient(180deg, #f8fbfd 0%, #ffffff 78%);
+    }
+
+    .hero-inner {
+      width: min(1180px, calc(100% - 40px));
+      margin: 0 auto;
+      padding: 48px 0 42px;
+      text-align: center;
+    }
+
+    .venue {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 12px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: #fff;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 700;
+      box-shadow: 0 6px 20px rgba(31, 48, 71, 0.06);
+    }
+
+    .venue::before {
+      content: "";
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--teal);
+    }
+
+    h1 {
+      margin: 16px auto 12px;
+      max-width: 980px;
+      font-size: clamp(34px, 5.2vw, 58px);
+      line-height: 1.06;
+      letter-spacing: 0;
+    }
+
+    .subtitle {
+      max-width: 850px;
+      margin: 0 auto;
+      color: #3e4b59;
+      font-size: clamp(17px, 2.2vw, 22px);
+      line-height: 1.55;
+    }
+
+    .authors {
+      margin: 22px auto 0;
+      color: var(--muted);
+      font-weight: 650;
+    }
+
+    .buttons {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+      margin-top: 24px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      min-height: 42px;
+      padding: 10px 16px;
+      border: 1px solid var(--ink);
+      border-radius: 7px;
+      background: var(--ink);
+      color: #fff;
+      font-weight: 750;
+      font-size: 14px;
+      box-shadow: 0 10px 25px rgba(24, 32, 42, 0.16);
+    }
+
+    .button.secondary {
+      border-color: var(--line);
+      background: #fff;
+      color: var(--ink);
+      box-shadow: none;
+    }
+
+    .hero-figure {
+      margin: 32px auto 0;
+      overflow: visible;
+      border: 0;
+      border-radius: 0;
+      background: transparent;
+      box-shadow: none;
+    }
+
+    .hero-figure img {
+      width: 100%;
+      background: transparent;
+    }
+
+    .hero-figure .caption {
+      display: none;
+    }
+
+    .caption {
+      margin: 0;
+      padding: 14px 18px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 14px;
+      text-align: left;
+    }
+
+    .caption strong {
+      color: var(--ink);
+    }
+
+    section {
+      width: min(1080px, calc(100% - 40px));
+      margin: 0 auto;
+      padding: 66px 0;
+      border-bottom: 1px solid var(--line);
+      scroll-margin-top: 88px;
+    }
+
+    section:last-of-type {
+      border-bottom: 0;
+    }
+
+    .section-head {
+      max-width: 780px;
+      margin-bottom: 28px;
+    }
+
+    #abstract .section-head,
+    #method .section-head,
+    #results .section-head,
+    #demos .section-head,
+    #cases .section-head {
+      max-width: 100%;
+      margin-right: auto;
+      margin-left: auto;
+      text-align: center;
+    }
+
+    #abstract .section-head .lead,
+    #method .section-head .lead,
+    #results .section-head .lead,
+    #demos .section-head .lead,
+    #cases .section-head .lead {
+      max-width: 100%;
+      margin-right: auto;
+      margin-left: auto;
+    }
+
+    .eyebrow {
+      margin: 0 0 8px;
+      color: var(--teal);
+      font-size: 13px;
+      font-weight: 850;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    h2 {
+      margin: 0;
+      font-size: clamp(26px, 3.5vw, 40px);
+      line-height: 1.14;
+      letter-spacing: 0;
+    }
+
+    .lead {
+      max-width: 890px;
+      margin: 14px 0 0;
+      color: #3e4b59;
+      font-size: 18px;
+    }
+
+    .grid {
+      display: grid;
+      gap: 18px;
+    }
+
+    .grid.three {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .grid.two {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      align-items: start;
+    }
+
+    .card {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+      padding: 22px;
+    }
+
+    .card h3 {
+      margin: 0 0 8px;
+      font-size: 18px;
+      letter-spacing: 0;
+    }
+
+    .card p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    #demos {
+      width: 100%;
+      overflow: hidden;
+      padding-top: 118px;
+    }
+
+    #demos .section-head {
+      width: min(1080px, calc(100% - 40px));
+    }
+
+    .demo-carousel {
+      position: relative;
+      margin-top: 30px;
+    }
+
+    .demo-track {
+      display: flex;
+      gap: 34px;
+      overflow-x: auto;
+      overscroll-behavior-x: contain;
+      scroll-behavior: smooth;
+      scroll-padding-inline: max(20px, calc((100vw - min(960px, 74vw)) / 2));
+      scroll-snap-type: x mandatory;
+      padding: 0 max(20px, calc((100vw - min(960px, 74vw)) / 2)) 18px;
+      scrollbar-width: none;
+    }
+
+    .demo-track::-webkit-scrollbar {
+      display: none;
+    }
+
+    .demo-card {
+      flex: 0 0 min(960px, 74vw);
+      scroll-snap-align: center;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: #fff;
+      box-shadow: 0 14px 34px rgba(31, 48, 71, 0.08);
+    }
+
+    .demo-card video {
+      aspect-ratio: 16 / 9;
+      object-fit: cover;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .demo-body {
+      display: grid;
+      grid-template-columns: 130px minmax(0, 1fr);
+      gap: 18px;
+      align-items: start;
+      padding: 18px 22px 22px;
+    }
+
+    .demo-kicker {
+      margin: 0;
+      color: var(--teal);
+      font-size: 12px;
+      font-weight: 850;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .demo-body h3 {
+      margin: 0 0 7px;
+      font-size: clamp(21px, 2.4vw, 28px);
+      line-height: 1.25;
+      letter-spacing: 0;
+    }
+
+    .demo-body p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.55;
+    }
+
+    .demo-copy p {
+      max-width: 680px;
+    }
+
+    .demo-controls {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 28px;
+      margin-top: 8px;
+    }
+
+    .demo-nav {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 48px;
+      height: 40px;
+      border: 0;
+      border-radius: 8px;
+      background: transparent;
+      color: var(--muted);
+      font-size: 34px;
+      line-height: 1;
+      cursor: pointer;
+    }
+
+    .demo-nav:hover {
+      color: var(--ink);
+      background: #eef4f7;
+    }
+
+    .demo-dots {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .demo-dot {
+      width: 8px;
+      height: 8px;
+      border: 0;
+      border-radius: 50%;
+      background: #bdc8d3;
+      cursor: pointer;
+    }
+
+    .demo-dot.is-active {
+      width: 24px;
+      border-radius: 999px;
+      background: var(--teal);
+    }
+
+    .case-stack {
+      display: grid;
+      gap: 22px;
+      margin-top: 34px;
+    }
+
+    .stat-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 28px;
+    }
+
+    .stat {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--soft);
+      padding: 20px;
+    }
+
+    .stat strong {
+      display: block;
+      color: var(--blue);
+      font-size: 32px;
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+
+    .stat span {
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .figure-block {
+      margin: 0;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+      box-shadow: 0 14px 36px rgba(31, 48, 71, 0.08);
+    }
+
+    .figure-block img {
+      width: 100%;
+    }
+
+    .ablation-figure {
+      margin-top: 22px;
+    }
+
+    .method-flow {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+      margin-top: 28px;
+    }
+
+    .step {
+      position: relative;
+      min-height: 190px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 22px;
+      background: linear-gradient(180deg, #fff 0%, #f7fafc 100%);
+    }
+
+    .step-num {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: var(--ink);
+      color: #fff;
+      font-weight: 800;
+      margin-bottom: 18px;
+    }
+
+    .step h3 {
+      margin: 0 0 8px;
+      font-size: 19px;
+    }
+
+    .step p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .results-table {
+      width: 100%;
+      border-collapse: collapse;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      font-size: 15px;
+    }
+
+    .results-table th,
+    .results-table td {
+      padding: 13px 14px;
+      border-bottom: 1px solid var(--line);
+      text-align: left;
+    }
+
+    .results-table th {
+      background: #f1f6fa;
+      color: #374252;
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .results-table tr:last-child td {
+      border-bottom: 0;
+    }
+
+    .results-table .best {
+      color: var(--rose);
+      font-weight: 850;
+    }
+
+    .results-table .method {
+      font-weight: 800;
+      color: var(--ink);
+    }
+
+    .table-wrap {
+      overflow-x: auto;
+      border-radius: 8px;
+    }
+
+    .callout {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 24px;
+      align-items: center;
+      padding: 26px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--soft);
+    }
+
+    .callout p {
+      margin: 10px 0 0;
+      color: var(--muted);
+    }
+
+    .tag-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      min-height: 32px;
+      padding: 6px 10px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: #fff;
+      color: #415062;
+      font-size: 13px;
+      font-weight: 750;
+    }
+
+    pre {
+      margin: 0;
+      overflow-x: auto;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #101820;
+      color: #e6edf3;
+      padding: 20px;
+      font-size: 13px;
+      line-height: 1.55;
+    }
+
+    .footer {
+      border-top: 1px solid var(--line);
+      background: #f7fafc;
+      color: var(--muted);
+      text-align: center;
+      padding: 32px 20px;
+      font-size: 14px;
+    }
+
+    @media (max-width: 860px) {
+      .nav {
+        width: min(100% - 28px, 1180px);
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .hero-inner,
+      section {
+        width: min(100% - 28px, 1080px);
+      }
+
+      .hero-inner {
+        padding-top: 40px;
+      }
+
+      .grid.three,
+      .grid.two,
+      .method-flow,
+      .stat-grid,
+      .callout {
+        grid-template-columns: 1fr;
+      }
+
+      .buttons {
+        align-items: stretch;
+      }
+
+      .button {
+        width: 100%;
+      }
+
+      .results-table {
+        min-width: 680px;
+      }
+
+      .demo-card video {
+        aspect-ratio: 16 / 10;
+      }
+
+      #demos .section-head {
+        width: min(100% - 28px, 1080px);
+      }
+
+      .demo-track {
+        gap: 18px;
+        scroll-padding-inline: 14px;
+        padding-inline: 14px;
+      }
+
+      .demo-card {
+        flex-basis: calc(100vw - 42px);
+      }
+
+      .demo-body {
+        grid-template-columns: 1fr;
+        gap: 8px;
+        padding: 16px;
+      }
+
+      .demo-controls {
+        gap: 18px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <nav class="nav" aria-label="Primary">
+      <a class="brand" href="#top" aria-label="Reason-WAM home">
+        <span class="brand-mark" aria-hidden="true"></span>
+        <span>Reason-WAM</span>
+      </a>
+      <div class="nav-links">
+        <a href="#abstract">Abstract</a>
+        <a href="#method">Method</a>
+        <a href="#results">Results</a>
+        <a href="#demos">Demos</a>
+        <a href="#cases">Cases</a>
+      </div>
+    </nav>
+  </header>
+
+  <main id="top">
+    <div class="hero">
+      <div class="hero-inner">
+        <div class="venue">Anonymous ARR Submission</div>
+        <h1>Reason-WAM: Vision-Language Reasoning for World Action Models in Urban Aerial Goal Navigation</h1>
+        <p class="subtitle">
+          A hierarchical navigation framework that couples VLM-based goal reasoning with world-action-model grounding for sparse-language, continuous 3D urban aerial navigation.
+        </p>
+        <p class="authors">Anonymous authors</p>
+        <figure class="hero-figure">
+          <img src="static/figures/intro-transparent.png" alt="Overview of Reason-WAM for urban aerial goal navigation">
+          <figcaption class="caption">
+            Goal-oriented urban aerial navigation requires an agent to infer useful subgoals from sparse language and ground them into executable motion in continuous three-dimensional space.
+          </figcaption>
+        </figure>
+      </div>
+    </div>
+
+    <section id="abstract">
+      <div class="section-head">
+        <p class="eyebrow">Abstract</p>
+        <h2>Abstract</h2>
+        <p class="lead">
+          Goal navigation is a fundamental problem in embodied intelligence, requiring an agent to reach a target specified by a sparse natural-language goal. The task inherently demands both high-level spatial reasoning for goal interpretation and route planning, and low-level action grounding for executable control. World Action Models (WAMs) provide a promising action-grounding paradigm by predicting future visual states and recovering actions through inverse dynamics, but they are typically limited to simple and short-horizon tasks.
+        </p>
+        <p class="lead">
+          We propose <strong>Reason-WAM</strong>, a hierarchical navigation framework in which a VLM performs goal reasoning and route planning, then drives the WAM to transform route-level intents into executable actions. A bottom-up training framework first grounds visual transitions into actions, then learns instruction-conditioned visual dynamics, and finally optimizes the VLM planner with multi-turn GRPO for closed-loop decision-making. Experiments on a public urban aerial goal-navigation benchmark show that Reason-WAM achieves state-of-the-art performance by combining the high-level reasoning strength of VLMs with the spatial action grounding capability of WAMs.
+        </p>
+      </div>
+    </section>
+
+    <section id="method">
+      <div class="section-head">
+        <p class="eyebrow">Method</p>
+        <h2>A hierarchical planner-executor design for open-ended aerial navigation.</h2>
+        <p class="lead">
+          The VLM remains responsible for long-horizon goal decomposition and interface selection, while the WAM provides local metric grounding by imagining how the visual state should change under a route-oriented instruction.
+        </p>
+      </div>
+      <div class="figure-block">
+        <img src="static/figures/method.png" alt="Reason-WAM architecture and bottom-up training pipeline">
+        <p class="caption">
+          Reason-WAM combines a reasoning planner, instruction-conditioned visual world model, and inverse action decoder into a closed-loop navigation system.
+        </p>
+      </div>
+      <div class="method-flow">
+        <article class="step">
+          <span class="step-num">1</span>
+          <h3>VLM Planner</h3>
+          <p>Reasons over the current observation, interaction history, and sparse goal to decide the next step.</p>
+        </article>
+        <article class="step">
+          <span class="step-num">2</span>
+          <h3>World Action Model</h3>
+          <p>When invoked, predicts a short visual rollout conditioned on the selected view and local route instruction.</p>
+        </article>
+        <article class="step">
+          <span class="step-num">3</span>
+          <h3>Action Decoder</h3>
+          <p>Recovers executable relative 6-DoF motion from the predicted visual transition and closes the loop.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="training">
+      <div class="callout">
+        <div>
+          <p class="eyebrow">Training</p>
+          <h2>Bottom-up optimization reduces long-horizon credit assignment.</h2>
+          <p>
+            Reason-WAM first learns the action decoder from video-trajectory pairs, then fine-tunes the world model on route-oriented instruction-video pairs, and finally optimizes the VLM planner with multi-turn GRPO in closed-loop rollouts.
+          </p>
+          <div class="tag-list" aria-label="Training stages">
+            <span class="tag">Action decoding</span>
+            <span class="tag">World-model SFT</span>
+            <span class="tag">Multi-turn GRPO</span>
+            <span class="tag">Closed-loop rollouts</span>
+          </div>
+        </div>
+        <div class="card">
+          <h3>Execution Interfaces</h3>
+          <p>
+            The planner can acquire additional surrounding views, issue primitive control commands, or write route-level VLN instructions that require WAM-based grounding.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="results">
+      <div class="section-head">
+        <p class="eyebrow">Results</p>
+        <h2>State-of-the-art performance on EmbodiedNav-Bench.</h2>
+        <p class="lead">
+          Reason-WAM achieves the best average SR and SPL across short, middle, and long episodes, showing the value of coordinated semantic decomposition and metric action grounding.
+        </p>
+      </div>
+      <div class="stat-grid">
+        <div class="stat">
+          <strong>41.0%</strong>
+          <span>Average SR</span>
+        </div>
+        <div class="stat">
+          <strong>37.3%</strong>
+          <span>Average SPL</span>
+        </div>
+        <div class="stat">
+          <strong>68.2%</strong>
+          <span>Short-Episode SR</span>
+        </div>
+        <div class="stat">
+          <strong>84.4</strong>
+          <span>Average NE</span>
+        </div>
+      </div>
+      <div class="table-wrap" style="margin-top: 28px;">
+        <table class="results-table">
+          <thead>
+            <tr>
+              <th>Method</th>
+              <th>Short SR</th>
+              <th>Middle SR</th>
+              <th>Long SR</th>
+              <th>Avg SR</th>
+              <th>Avg SPL</th>
+              <th>Avg NE</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>GPT-4.1</td>
+              <td>51.5</td>
+              <td>15.2</td>
+              <td>6.3</td>
+              <td>24.3</td>
+              <td>22.2</td>
+              <td>113.0</td>
+            </tr>
+            <tr>
+              <td>GPT-5.1</td>
+              <td>52.9</td>
+              <td>30.4</td>
+              <td>18.2</td>
+              <td>34.0</td>
+              <td>32.0</td>
+              <td>107.0</td>
+            </tr>
+            <tr>
+              <td>Qwen3-VL (SFT)</td>
+              <td>48.5</td>
+              <td>27.3</td>
+              <td>8.8</td>
+              <td>28.0</td>
+              <td>27.0</td>
+              <td>131.9</td>
+            </tr>
+            <tr>
+              <td class="method">Reason-WAM</td>
+              <td class="best">68.2</td>
+              <td class="best">34.8</td>
+              <td class="best">20.6</td>
+              <td class="best">41.0</td>
+              <td class="best">37.3</td>
+              <td class="best">84.4</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="demos">
+      <div class="section-head">
+        <p class="eyebrow">Latest Demos</p>
+        <h2>Closed-loop navigation demos in challenging urban scenes.</h2>
+        <p class="lead">
+          These three new demonstrations show Reason-WAM turning sparse language goals into grounded aerial movement through repeated planning, perception, and WAM-based execution.
+        </p>
+      </div>
+      <div class="demo-carousel" aria-label="Latest Reason-WAM demonstration videos">
+        <div class="demo-track" id="demoTrack">
+          <article class="demo-card">
+            <video controls preload="metadata" playsinline>
+              <source src="static/videos/case1.web.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+            <div class="demo-body">
+              <p class="demo-kicker">Demo 01</p>
+              <div class="demo-copy">
+                <h3>Sparse-goal search with visual grounding</h3>
+                <p>The agent resolves a high-level target description into local route choices and executable aerial actions.</p>
+              </div>
+            </div>
+          </article>
+          <article class="demo-card">
+            <video controls preload="metadata" playsinline>
+              <source src="static/videos/case2.web.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+            <div class="demo-body">
+              <p class="demo-kicker">Demo 02</p>
+              <div class="demo-copy">
+                <h3>Longer-horizon urban navigation</h3>
+                <p>Reason-WAM maintains route intent across scene changes while grounding each step in the current visual state.</p>
+              </div>
+            </div>
+          </article>
+          <article class="demo-card">
+            <video controls preload="metadata" playsinline>
+              <source src="static/videos/case3.web.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+            <div class="demo-body">
+              <p class="demo-kicker">Demo 03</p>
+              <div class="demo-copy">
+                <h3>Adaptive planning under ambiguity</h3>
+                <p>The planner uses visual feedback to refine its decision sequence before committing to grounded movement.</p>
+              </div>
+            </div>
+          </article>
+        </div>
+        <div class="demo-controls" aria-label="Demo carousel controls">
+          <button class="demo-nav" type="button" data-demo-dir="-1" aria-label="Previous demo">&larr;</button>
+          <div class="demo-dots" aria-hidden="true">
+            <button class="demo-dot is-active" type="button" data-demo-index="0"></button>
+            <button class="demo-dot" type="button" data-demo-index="1"></button>
+            <button class="demo-dot" type="button" data-demo-index="2"></button>
+          </div>
+          <button class="demo-nav" type="button" data-demo-dir="1" aria-label="Next demo">&rarr;</button>
+        </div>
+      </div>
+    </section>
+
+    <section id="cases">
+      <div class="section-head">
+        <p class="eyebrow">Qualitative Analysis</p>
+        <h2>Adaptive switching between perception, primitive motion, and WAM invocation.</h2>
+        <p class="lead">
+          In a representative case with the sparse goal "Blue board behind", the planner first gathers surrounding views, then performs local adjustments, and finally invokes the WAM for route-level goal-directed movement.
+        </p>
+      </div>
+      <div class="case-stack">
+        <figure class="figure-block">
+        <img src="static/figures/case_s4.png" alt="Qualitative case showing VLM action selection in Reason-WAM">
+        <figcaption class="caption">
+          The VLM dynamically chooses active perception, direct primitive action, and WAM-based execution according to local uncertainty and route-level intent.
+        </figcaption>
+        </figure>
+        <figure class="figure-block ablation-figure">
+          <img src="static/figures/case.png" alt="Ablation study comparing Reason-WAM, VLM-only, and WM-VO-only navigation">
+          <figcaption class="caption">
+            <strong>Ablation comparison.</strong> Reason-WAM reaches the destination by combining high-level spatial reasoning with grounded action execution, while the VLM-only and WM-VO-only baselines fail from the same initial state and goal.
+          </figcaption>
+        </figure>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <p>Anonymous project page for Reason-WAM. Author names, affiliations, acknowledgements, and identifying information are omitted for peer review.</p>
+  </footer>
+  <script>
+    const demoTrack = document.querySelector("#demoTrack");
+    const demoCards = Array.from(document.querySelectorAll(".demo-card"));
+    const demoDots = Array.from(document.querySelectorAll(".demo-dot"));
+
+    function scrollToDemo(index) {
+      const nextIndex = Math.max(0, Math.min(index, demoCards.length - 1));
+      demoCards[nextIndex].scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
+    }
+
+    function activeDemoIndex() {
+      const trackCenter = demoTrack.scrollLeft + demoTrack.clientWidth / 2;
+      return demoCards.reduce((closest, card, index) => {
+        const cardCenter = card.offsetLeft + card.offsetWidth / 2;
+        const distance = Math.abs(trackCenter - cardCenter);
+        return distance < closest.distance ? { index, distance } : closest;
+      }, { index: 0, distance: Infinity }).index;
+    }
+
+    function updateDemoDots() {
+      const index = activeDemoIndex();
+      demoDots.forEach((dot, dotIndex) => {
+        dot.classList.toggle("is-active", dotIndex === index);
+      });
+    }
+
+    document.querySelectorAll("[data-demo-dir]").forEach((button) => {
+      button.addEventListener("click", () => {
+        scrollToDemo(activeDemoIndex() + Number(button.dataset.demoDir));
+      });
+    });
+
+    demoDots.forEach((dot) => {
+      dot.addEventListener("click", () => {
+        scrollToDemo(Number(dot.dataset.demoIndex));
+      });
+    });
+
+    demoTrack.addEventListener("scroll", () => {
+      window.requestAnimationFrame(updateDemoDots);
+    }, { passive: true });
+
+    window.addEventListener("resize", updateDemoDots);
+    updateDemoDots();
+  </script>
+</body>
+</html>
