@@ -17,6 +17,7 @@
       --amber: #b7791f;
       --rose: #b83256;
       --shadow: 0 18px 50px rgba(31, 48, 71, 0.12);
+      --radius: 8px;
     }
 
     * {
@@ -31,7 +32,7 @@
       margin: 0;
       font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       color: var(--ink);
-      background: var(--paper);
+      background: linear-gradient(180deg, #fbfdff 0%, #fff 420px);
       line-height: 1.65;
     }
 
@@ -43,6 +44,12 @@
     img {
       display: block;
       max-width: 100%;
+    }
+
+    video {
+      display: block;
+      width: 100%;
+      background: #0f1722;
     }
 
     .topbar {
@@ -108,9 +115,9 @@
     .hero {
       border-bottom: 1px solid var(--line);
       background:
-        radial-gradient(circle at 18% 20%, rgba(31, 111, 235, 0.12), transparent 28%),
-        radial-gradient(circle at 82% 18%, rgba(9, 141, 134, 0.12), transparent 26%),
-        linear-gradient(180deg, #f8fbfd 0%, #ffffff 76%);
+        linear-gradient(115deg, rgba(31, 111, 235, 0.1), transparent 34%),
+        linear-gradient(245deg, rgba(9, 141, 134, 0.1), transparent 36%),
+        linear-gradient(180deg, #f8fbfd 0%, #ffffff 78%);
     }
 
     .hero-inner {
@@ -132,6 +139,14 @@
       font-size: 13px;
       font-weight: 700;
       box-shadow: 0 6px 20px rgba(31, 48, 71, 0.06);
+    }
+
+    .venue::before {
+      content: "";
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--teal);
     }
 
     h1 {
@@ -214,11 +229,16 @@
       text-align: left;
     }
 
+    .caption strong {
+      color: var(--ink);
+    }
+
     section {
       width: min(1080px, calc(100% - 40px));
       margin: 0 auto;
       padding: 66px 0;
       border-bottom: 1px solid var(--line);
+      scroll-margin-top: 88px;
     }
 
     section:last-of-type {
@@ -233,6 +253,7 @@
     #abstract .section-head,
     #method .section-head,
     #results .section-head,
+    #demos .section-head,
     #cases .section-head {
       max-width: 100%;
       margin-right: auto;
@@ -243,6 +264,7 @@
     #abstract .section-head .lead,
     #method .section-head .lead,
     #results .section-head .lead,
+    #demos .section-head .lead,
     #cases .section-head .lead {
       max-width: 100%;
       margin-right: auto;
@@ -302,6 +324,143 @@
     .card p {
       margin: 0;
       color: var(--muted);
+    }
+
+    #demos {
+      width: 100%;
+      overflow: hidden;
+      padding-top: 118px;
+    }
+
+    #demos .section-head {
+      width: min(1080px, calc(100% - 40px));
+    }
+
+    .demo-carousel {
+      position: relative;
+      margin-top: 30px;
+    }
+
+    .demo-track {
+      display: flex;
+      gap: 34px;
+      overflow-x: auto;
+      overscroll-behavior-x: contain;
+      scroll-behavior: smooth;
+      scroll-padding-inline: max(20px, calc((100vw - min(960px, 74vw)) / 2));
+      scroll-snap-type: x mandatory;
+      padding: 0 max(20px, calc((100vw - min(960px, 74vw)) / 2)) 18px;
+      scrollbar-width: none;
+    }
+
+    .demo-track::-webkit-scrollbar {
+      display: none;
+    }
+
+    .demo-card {
+      flex: 0 0 min(960px, 74vw);
+      scroll-snap-align: center;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: #fff;
+      box-shadow: 0 14px 34px rgba(31, 48, 71, 0.08);
+    }
+
+    .demo-card video {
+      aspect-ratio: 16 / 9;
+      object-fit: cover;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .demo-body {
+      display: grid;
+      grid-template-columns: 130px minmax(0, 1fr);
+      gap: 18px;
+      align-items: start;
+      padding: 18px 22px 22px;
+    }
+
+    .demo-kicker {
+      margin: 0;
+      color: var(--teal);
+      font-size: 12px;
+      font-weight: 850;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .demo-body h3 {
+      margin: 0 0 7px;
+      font-size: clamp(21px, 2.4vw, 28px);
+      line-height: 1.25;
+      letter-spacing: 0;
+    }
+
+    .demo-body p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.55;
+    }
+
+    .demo-copy p {
+      max-width: 680px;
+    }
+
+    .demo-controls {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 28px;
+      margin-top: 8px;
+    }
+
+    .demo-nav {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 48px;
+      height: 40px;
+      border: 0;
+      border-radius: 8px;
+      background: transparent;
+      color: var(--muted);
+      font-size: 34px;
+      line-height: 1;
+      cursor: pointer;
+    }
+
+    .demo-nav:hover {
+      color: var(--ink);
+      background: #eef4f7;
+    }
+
+    .demo-dots {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .demo-dot {
+      width: 8px;
+      height: 8px;
+      border: 0;
+      border-radius: 50%;
+      background: #bdc8d3;
+      cursor: pointer;
+    }
+
+    .demo-dot.is-active {
+      width: 24px;
+      border-radius: 999px;
+      background: var(--teal);
+    }
+
+    .case-stack {
+      display: grid;
+      gap: 22px;
+      margin-top: 34px;
     }
 
     .stat-grid {
@@ -525,6 +684,34 @@
       .results-table {
         min-width: 680px;
       }
+
+      .demo-card video {
+        aspect-ratio: 16 / 10;
+      }
+
+      #demos .section-head {
+        width: min(100% - 28px, 1080px);
+      }
+
+      .demo-track {
+        gap: 18px;
+        scroll-padding-inline: 14px;
+        padding-inline: 14px;
+      }
+
+      .demo-card {
+        flex-basis: calc(100vw - 42px);
+      }
+
+      .demo-body {
+        grid-template-columns: 1fr;
+        gap: 8px;
+        padding: 16px;
+      }
+
+      .demo-controls {
+        gap: 18px;
+      }
     }
   </style>
 </head>
@@ -539,6 +726,7 @@
         <a href="#abstract">Abstract</a>
         <a href="#method">Method</a>
         <a href="#results">Results</a>
+        <a href="#demos">Demos</a>
         <a href="#cases">Cases</a>
       </div>
     </nav>
@@ -713,26 +901,90 @@
       </div>
     </section>
 
+    <section id="demos">
+      <div class="section-head">
+        <p class="eyebrow">Latest Demos</p>
+        <h2>Closed-loop navigation demos in challenging urban scenes.</h2>
+        <p class="lead">
+          These three new demonstrations show Reason-WAM turning sparse language goals into grounded aerial movement through repeated planning, perception, and WAM-based execution.
+        </p>
+      </div>
+      <div class="demo-carousel" aria-label="Latest Reason-WAM demonstration videos">
+        <div class="demo-track" id="demoTrack">
+          <article class="demo-card">
+            <video controls preload="metadata" playsinline>
+              <source src="static/videos/case1.web.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+            <div class="demo-body">
+              <p class="demo-kicker">Demo 01</p>
+              <div class="demo-copy">
+                <h3>Sparse-goal search with visual grounding</h3>
+                <p>The agent resolves a high-level target description into local route choices and executable aerial actions.</p>
+              </div>
+            </div>
+          </article>
+          <article class="demo-card">
+            <video controls preload="metadata" playsinline>
+              <source src="static/videos/case2.web.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+            <div class="demo-body">
+              <p class="demo-kicker">Demo 02</p>
+              <div class="demo-copy">
+                <h3>Longer-horizon urban navigation</h3>
+                <p>Reason-WAM maintains route intent across scene changes while grounding each step in the current visual state.</p>
+              </div>
+            </div>
+          </article>
+          <article class="demo-card">
+            <video controls preload="metadata" playsinline>
+              <source src="static/videos/case3.web.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+            <div class="demo-body">
+              <p class="demo-kicker">Demo 03</p>
+              <div class="demo-copy">
+                <h3>Adaptive planning under ambiguity</h3>
+                <p>The planner uses visual feedback to refine its decision sequence before committing to grounded movement.</p>
+              </div>
+            </div>
+          </article>
+        </div>
+        <div class="demo-controls" aria-label="Demo carousel controls">
+          <button class="demo-nav" type="button" data-demo-dir="-1" aria-label="Previous demo">&larr;</button>
+          <div class="demo-dots" aria-hidden="true">
+            <button class="demo-dot is-active" type="button" data-demo-index="0"></button>
+            <button class="demo-dot" type="button" data-demo-index="1"></button>
+            <button class="demo-dot" type="button" data-demo-index="2"></button>
+          </div>
+          <button class="demo-nav" type="button" data-demo-dir="1" aria-label="Next demo">&rarr;</button>
+        </div>
+      </div>
+    </section>
+
     <section id="cases">
       <div class="section-head">
-        <p class="eyebrow">Qualitative Cases</p>
+        <p class="eyebrow">Qualitative Analysis</p>
         <h2>Adaptive switching between perception, primitive motion, and WAM invocation.</h2>
         <p class="lead">
           In a representative case with the sparse goal "Blue board behind", the planner first gathers surrounding views, then performs local adjustments, and finally invokes the WAM for route-level goal-directed movement.
         </p>
       </div>
-      <div class="figure-block">
+      <div class="case-stack">
+        <figure class="figure-block">
         <img src="static/figures/case_s4.png" alt="Qualitative case showing VLM action selection in Reason-WAM">
-        <p class="caption">
-          The VLM dynamically chooses active perception, direct primitive action, and WAM-based execution according to local uncertainty and route-level intent.
-        </p>
-      </div>
-      <figure class="figure-block ablation-figure">
-        <img src="static/figures/case.png" alt="Ablation study comparing Reason-WAM, VLM-only, and WM-VO-only navigation">
         <figcaption class="caption">
-          Ablation comparison from the paper: Reason-WAM reaches the destination by combining high-level spatial reasoning with grounded action execution, while the VLM-only and WM-VO-only baselines fail from the same initial state and goal.
+          The VLM dynamically chooses active perception, direct primitive action, and WAM-based execution according to local uncertainty and route-level intent.
         </figcaption>
-      </figure>
+        </figure>
+        <figure class="figure-block ablation-figure">
+          <img src="static/figures/case.png" alt="Ablation study comparing Reason-WAM, VLM-only, and WM-VO-only navigation">
+          <figcaption class="caption">
+            <strong>Ablation comparison.</strong> Reason-WAM reaches the destination by combining high-level spatial reasoning with grounded action execution, while the VLM-only and WM-VO-only baselines fail from the same initial state and goal.
+          </figcaption>
+        </figure>
+      </div>
     </section>
 
   </main>
@@ -740,5 +992,50 @@
   <footer class="footer">
     <p>Anonymous project page for Reason-WAM. Author names, affiliations, acknowledgements, and identifying information are omitted for peer review.</p>
   </footer>
+  <script>
+    const demoTrack = document.querySelector("#demoTrack");
+    const demoCards = Array.from(document.querySelectorAll(".demo-card"));
+    const demoDots = Array.from(document.querySelectorAll(".demo-dot"));
+
+    function scrollToDemo(index) {
+      const nextIndex = Math.max(0, Math.min(index, demoCards.length - 1));
+      demoCards[nextIndex].scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
+    }
+
+    function activeDemoIndex() {
+      const trackCenter = demoTrack.scrollLeft + demoTrack.clientWidth / 2;
+      return demoCards.reduce((closest, card, index) => {
+        const cardCenter = card.offsetLeft + card.offsetWidth / 2;
+        const distance = Math.abs(trackCenter - cardCenter);
+        return distance < closest.distance ? { index, distance } : closest;
+      }, { index: 0, distance: Infinity }).index;
+    }
+
+    function updateDemoDots() {
+      const index = activeDemoIndex();
+      demoDots.forEach((dot, dotIndex) => {
+        dot.classList.toggle("is-active", dotIndex === index);
+      });
+    }
+
+    document.querySelectorAll("[data-demo-dir]").forEach((button) => {
+      button.addEventListener("click", () => {
+        scrollToDemo(activeDemoIndex() + Number(button.dataset.demoDir));
+      });
+    });
+
+    demoDots.forEach((dot) => {
+      dot.addEventListener("click", () => {
+        scrollToDemo(Number(dot.dataset.demoIndex));
+      });
+    });
+
+    demoTrack.addEventListener("scroll", () => {
+      window.requestAnimationFrame(updateDemoDots);
+    }, { passive: true });
+
+    window.addEventListener("resize", updateDemoDots);
+    updateDemoDots();
+  </script>
 </body>
 </html>

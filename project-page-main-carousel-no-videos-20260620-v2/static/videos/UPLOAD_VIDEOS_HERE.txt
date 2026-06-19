@@ -1,8 +1,0 @@
-Upload the three demo videos into this folder after the page files are online.
-
-Required filenames:
-- case1.web.mp4
-- case2.web.mp4
-- case3.web.mp4
-
-Do not rename them. The page already references these exact paths.
