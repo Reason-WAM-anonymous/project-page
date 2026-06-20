@@ -329,7 +329,7 @@
     #demos {
       width: 100%;
       overflow: hidden;
-      padding-top: 118px;
+      padding-top: 24px;
     }
 
     #demos .section-head {
@@ -369,7 +369,7 @@
 
     .demo-card video {
       aspect-ratio: 16 / 9;
-      object-fit: cover;
+      object-fit: contain;
       border-bottom: 1px solid var(--line);
     }
 
@@ -685,10 +685,6 @@
         min-width: 680px;
       }
 
-      .demo-card video {
-        aspect-ratio: 16 / 10;
-      }
-
       #demos .section-head {
         width: min(100% - 28px, 1080px);
       }
@@ -723,10 +719,10 @@
         <span>Reason-WAM</span>
       </a>
       <div class="nav-links">
+        <a href="#demos">Demos</a>
         <a href="#abstract">Abstract</a>
         <a href="#method">Method</a>
         <a href="#results">Results</a>
-        <a href="#demos">Demos</a>
         <a href="#cases">Cases</a>
       </div>
     </nav>
@@ -749,6 +745,68 @@
         </figure>
       </div>
     </div>
+
+    <section id="demos">
+      <div class="section-head">
+        <p class="eyebrow">Latest Demos</p>
+        <h2>Closed-loop navigation demos in challenging urban scenes.</h2>
+        <p class="lead">
+          These three new demonstrations show Reason-WAM turning sparse language goals into grounded aerial movement through repeated planning, perception, and WAM-based execution.
+        </p>
+      </div>
+      <div class="demo-carousel" aria-label="Latest Reason-WAM demonstration videos">
+        <div class="demo-track" id="demoTrack">
+          <article class="demo-card">
+            <video controls preload="none" playsinline poster="static/videos/case1.poster.jpg">
+              <source src="static/videos/case1.web.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+            <div class="demo-body">
+              <p class="demo-kicker">Demo 01</p>
+              <div class="demo-copy">
+                <h3>Sparse-goal search with visual grounding</h3>
+                <p>The agent resolves a high-level target description into local route choices and executable aerial actions.</p>
+              </div>
+            </div>
+          </article>
+          <article class="demo-card">
+            <video controls preload="none" playsinline poster="static/videos/case2.poster.jpg">
+              <source src="static/videos/case2.web.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+            <div class="demo-body">
+              <p class="demo-kicker">Demo 02</p>
+              <div class="demo-copy">
+                <h3>Longer-horizon urban navigation</h3>
+                <p>Reason-WAM maintains route intent across scene changes while grounding each step in the current visual state.</p>
+              </div>
+            </div>
+          </article>
+          <article class="demo-card">
+            <video controls preload="none" playsinline poster="static/videos/case3.poster.jpg">
+              <source src="static/videos/case3.web.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+            <div class="demo-body">
+              <p class="demo-kicker">Demo 03</p>
+              <div class="demo-copy">
+                <h3>Adaptive planning under ambiguity</h3>
+                <p>The planner uses visual feedback to refine its decision sequence before committing to grounded movement.</p>
+              </div>
+            </div>
+          </article>
+        </div>
+        <div class="demo-controls" aria-label="Demo carousel controls">
+          <button class="demo-nav" type="button" data-demo-dir="-1" aria-label="Previous demo">&larr;</button>
+          <div class="demo-dots" aria-hidden="true">
+            <button class="demo-dot is-active" type="button" data-demo-index="0"></button>
+            <button class="demo-dot" type="button" data-demo-index="1"></button>
+            <button class="demo-dot" type="button" data-demo-index="2"></button>
+          </div>
+          <button class="demo-nav" type="button" data-demo-dir="1" aria-label="Next demo">&rarr;</button>
+        </div>
+      </div>
+    </section>
 
     <section id="abstract">
       <div class="section-head">
@@ -898,68 +956,6 @@
             </tr>
           </tbody>
         </table>
-      </div>
-    </section>
-
-    <section id="demos">
-      <div class="section-head">
-        <p class="eyebrow">Latest Demos</p>
-        <h2>Closed-loop navigation demos in challenging urban scenes.</h2>
-        <p class="lead">
-          These three new demonstrations show Reason-WAM turning sparse language goals into grounded aerial movement through repeated planning, perception, and WAM-based execution.
-        </p>
-      </div>
-      <div class="demo-carousel" aria-label="Latest Reason-WAM demonstration videos">
-        <div class="demo-track" id="demoTrack">
-          <article class="demo-card">
-            <video controls preload="metadata" playsinline>
-              <source src="static/videos/case1.web.mp4" type="video/mp4">
-              Your browser does not support the video tag.
-            </video>
-            <div class="demo-body">
-              <p class="demo-kicker">Demo 01</p>
-              <div class="demo-copy">
-                <h3>Sparse-goal search with visual grounding</h3>
-                <p>The agent resolves a high-level target description into local route choices and executable aerial actions.</p>
-              </div>
-            </div>
-          </article>
-          <article class="demo-card">
-            <video controls preload="metadata" playsinline>
-              <source src="static/videos/case2.web.mp4" type="video/mp4">
-              Your browser does not support the video tag.
-            </video>
-            <div class="demo-body">
-              <p class="demo-kicker">Demo 02</p>
-              <div class="demo-copy">
-                <h3>Longer-horizon urban navigation</h3>
-                <p>Reason-WAM maintains route intent across scene changes while grounding each step in the current visual state.</p>
-              </div>
-            </div>
-          </article>
-          <article class="demo-card">
-            <video controls preload="metadata" playsinline>
-              <source src="static/videos/case3.web.mp4" type="video/mp4">
-              Your browser does not support the video tag.
-            </video>
-            <div class="demo-body">
-              <p class="demo-kicker">Demo 03</p>
-              <div class="demo-copy">
-                <h3>Adaptive planning under ambiguity</h3>
-                <p>The planner uses visual feedback to refine its decision sequence before committing to grounded movement.</p>
-              </div>
-            </div>
-          </article>
-        </div>
-        <div class="demo-controls" aria-label="Demo carousel controls">
-          <button class="demo-nav" type="button" data-demo-dir="-1" aria-label="Previous demo">&larr;</button>
-          <div class="demo-dots" aria-hidden="true">
-            <button class="demo-dot is-active" type="button" data-demo-index="0"></button>
-            <button class="demo-dot" type="button" data-demo-index="1"></button>
-            <button class="demo-dot" type="button" data-demo-index="2"></button>
-          </div>
-          <button class="demo-nav" type="button" data-demo-dir="1" aria-label="Next demo">&rarr;</button>
-        </div>
       </div>
     </section>
 
