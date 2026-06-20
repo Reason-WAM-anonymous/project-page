@@ -360,6 +360,7 @@
     .demo-card {
       flex: 0 0 min(960px, 74vw);
       scroll-snap-align: center;
+      position: relative;
       overflow: hidden;
       border: 1px solid var(--line);
       border-radius: var(--radius);
@@ -371,6 +372,24 @@
       aspect-ratio: 16 / 9;
       object-fit: contain;
       border-bottom: 1px solid var(--line);
+    }
+
+    .speed-badge {
+      position: absolute;
+      left: 16px;
+      top: 16px;
+      z-index: 1;
+      display: inline-flex;
+      align-items: center;
+      min-height: 30px;
+      padding: 5px 10px;
+      border-radius: 999px;
+      background: rgba(16, 24, 32, 0.78);
+      color: #fff;
+      font-size: 13px;
+      font-weight: 850;
+      letter-spacing: 0;
+      backdrop-filter: blur(8px);
     }
 
     .demo-body {
@@ -761,6 +780,7 @@
               <source src="static/videos/case1.web.mp4" type="video/mp4">
               Your browser does not support the video tag.
             </video>
+            <span class="speed-badge">5x speed</span>
             <div class="demo-body">
               <p class="demo-kicker">Demo 01</p>
               <div class="demo-copy">
@@ -774,6 +794,7 @@
               <source src="static/videos/case2.web.mp4" type="video/mp4">
               Your browser does not support the video tag.
             </video>
+            <span class="speed-badge">5x speed</span>
             <div class="demo-body">
               <p class="demo-kicker">Demo 02</p>
               <div class="demo-copy">
@@ -787,6 +808,7 @@
               <source src="static/videos/case3.web.mp4" type="video/mp4">
               Your browser does not support the video tag.
             </video>
+            <span class="speed-badge">5x speed</span>
             <div class="demo-body">
               <p class="demo-kicker">Demo 03</p>
               <div class="demo-copy">
